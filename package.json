@@ -1,0 +1,29 @@
+{
+    "name": "react-native-aliyunplayer",
+    "version": "1.0.0",
+    "description": "阿里云视频播放器，react native版本",
+    "main": "index.ts",
+    "nativePackage": true,
+    "scripts": {
+    },
+    "repository": {
+      "type": "git",
+      "url": "git+https://github.com/LewinJun/react-native-aliyunplayer.git"
+    },
+    "keywords": [
+      "视频播放",
+      "react",
+      "阿里云视频",
+      "mp4",
+      "native"
+    ],
+    "author": "lewin",
+    "license": "ISC",
+    "peerDependencies": {
+        "react-native": ">0.60.0"
+    },
+    "bugs": {
+      "url": "https://github.com/LewinJun/react-native-aliyunplayer/issues"
+    },
+    "homepage": "https://github.com/LewinJun/react-native-aliyunplayer#readme"
+  }

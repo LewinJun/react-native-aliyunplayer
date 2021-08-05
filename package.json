@@ -11,6 +11,8 @@
       "url": "git+https://github.com/LewinJun/react-native-aliyunplayer.git"
     },
     "keywords": [
+      "video",
+      "react-native-video",
       "视频播放",
       "react",
       "阿里云视频",

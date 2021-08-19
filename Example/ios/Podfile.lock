@@ -1,4 +1,7 @@
 PODS:
+  - AliPlayerSDK_iOS (5.4.2.0):
+    - AliPlayerSDK_iOS/AliPlayerSDK (= 5.4.2.0)
+  - AliPlayerSDK_iOS/AliPlayerSDK (5.4.2.0)
   - boost-for-react-native (1.63.0)
   - DoubleConversion (1.1.6)
   - FBLazyVector (0.64.2)
@@ -277,6 +280,7 @@ PODS:
   - Yoga (1.14.0)
 
 DEPENDENCIES:
+  - AliPlayerSDK_iOS
   - DoubleConversion (from `../node_modules/react-native/third-party-podspecs/DoubleConversion.podspec`)
   - FBLazyVector (from `../node_modules/react-native/Libraries/FBLazyVector`)
   - FBReactNativeSpec (from `../node_modules/react-native/React/FBReactNativeSpec`)
@@ -313,6 +317,7 @@ DEPENDENCIES:
 
 SPEC REPOS:
   trunk:
+    - AliPlayerSDK_iOS
     - boost-for-react-native
 
 EXTERNAL SOURCES:
@@ -380,10 +385,11 @@ EXTERNAL SOURCES:
     :path: "../node_modules/react-native/ReactCommon/yoga"
 
 SPEC CHECKSUMS:
+  AliPlayerSDK_iOS: 6f7cc2a5a6634c8638d59d50f5675640efbd4aa7
   boost-for-react-native: 39c7adb57c4e60d6c5479dd8623128eb5b3f0f2c
   DoubleConversion: cf9b38bf0b2d048436d9a82ad2abe1404f11e7de
   FBLazyVector: e686045572151edef46010a6f819ade377dfeb4b
-  FBReactNativeSpec: 95728476217d2c98611f457507c8959b9b0df67a
+  FBReactNativeSpec: 1f5fb6060c6fee8da917992fe8b10b0c513a9976
   glog: 73c2498ac6884b13ede40eda8228cb1eee9d9d62
   RCT-Folly: ec7a233ccc97cc556cf7237f0db1ff65b986f27c
   RCTRequired: 6d3e854f0e7260a648badd0d44fc364bc9da9728
@@ -413,6 +419,6 @@ SPEC CHECKSUMS:
   RNScreens: 01ab149b5dd5c27f5ff26741b1d2bdf2cee1af35
   Yoga: 575c581c63e0d35c9a83f4b46d01d63abc1100ac
 
-PODFILE CHECKSUM: eeb04165524035b0c7e0bea75808d451a6c6b53e
+PODFILE CHECKSUM: 93be07609bde56abb619621ffe0e535311d94d3d
 
 COCOAPODS: 1.10.1

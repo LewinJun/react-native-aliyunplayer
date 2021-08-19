@@ -188,7 +188,7 @@
       if (self.onAliPrepared) {
          self.onAliPrepared(@{@"duration":@(player.duration/1000)});
       }
-      [_player setThumbnailUrl:@"https://p.qqan.com/up/2021-8/16292685053812604.jpg"];
+//      [_player setThumbnailUrl:@"https://p.qqan.com/up/2021-8/16292685053812604.jpg"];
       break;
     case AVPEventAutoPlayStart:
       // 自动播放开始事件

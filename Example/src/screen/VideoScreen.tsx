@@ -1,8 +1,9 @@
 import { useNavigation } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import React, { Component } from "react";
-import { View } from "react-native";
-import Video from 'react-native-aliyunplayer'
+import { View, UIManager,requireNativeComponent } from "react-native";
+import RNAliPlayer from "../components/AliPlayer";
+
 export default class VideoScreen extends Component<StackScreenProps<any>, any> {
 
     componentDidMount() {
@@ -12,8 +13,11 @@ export default class VideoScreen extends Component<StackScreenProps<any>, any> {
     }
 
     render() {
-        return <View style={{ flex: 1, padding: 30 }}>
-            <Video />
+        return <View style={{ flex: 1, padding: 30 , alignItems: "center"  }}>
+            <RNAliPlayer style={{ width: 300, height: 300 }} 
+            source='http://200024424.vod.myqcloud.com/200024424_709ae516bdf811e6ad39991f76a4df69.f20.mp4'
+            setAutoPlay={true}
+             />
         </View>
     }
 

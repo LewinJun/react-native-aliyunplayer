@@ -15,8 +15,8 @@ export default class VideoPageScreen extends Component<StackScreenProps<any>, an
     render() {
         return <View style={{ flex: 1, padding: 30 }}>
             <Button text={'视频播放界面'} onPress={() => {
-                this.props?.navigation?.navigate("")
-                useNavigation().navigate("")
+                this.props?.navigation?.navigate("Video")
+                // useNavigation().navigate("")
             }} />
         </View>
     }

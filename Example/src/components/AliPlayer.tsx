@@ -1,6 +1,6 @@
-import React from 'react'
-import { View, requireNativeComponent, ViewPropTypes, StyleProp, ViewStyle, UIManager } from 'react-native'
-var AliPlayer = requireNativeComponent('RNAliplayer');
+import React, { Component } from 'react'
+import { View, requireNativeComponent, findNodeHandle, StyleProp, ViewStyle, UIManager } from 'react-native'
+var AliyunPlayer = requireNativeComponent('RNAliplayer');
 
 interface AliPlayerProps {
     style?: StyleProp<ViewStyle>;
@@ -43,11 +43,73 @@ interface AliPlayerProps {
     seekTo?: (position :number) => void;
 }
 
-const RNAliPlayer = (props: AliPlayerProps) => {
+export default class AliPlayer extends Component <AliPlayerProps>{
+  // constructor(props: AliPlayerProps) {
+  //   super(props)
+    
+  // }
 
-    return (<View>
-        <AliPlayer {...props} />
-    </View>)
+  componentWillUnmount() {
+    this.stopPlay();
+    this.destroyPlay();
+  }
+
+  _assignRoot = (component) => {
+    this._root = component;
+  };
+
+  _dispatchCommand = (command, params = []) => {
+    if (this._root) {
+      UIManager.dispatchViewManagerCommand(findNodeHandle(this._root), command, params);
+    }
+  };
+
+  setNativeProps = (props) => {
+    if (this._root) {
+      this._root.setNativeProps(props);
+    }
+  };
+
+  // 开始播放。
+  startPlay = () => {
+    this._dispatchCommand('startPlay');
+  };
+
+  // 暂停播放
+  pausePlay = () => {
+    this._dispatchCommand('pausePlay');
+  };
+
+  // 停止播放
+  stopPlay = () => {
+    this._dispatchCommand('stopPlay');
+  };
+
+  // 重载播放
+  reloadPlay = () => {
+    this._dispatchCommand('reloadPlay');
+  };
+
+  // 重新播放
+  restartPlay = () => {
+    this._dispatchCommand('restartPlay');
+  };
+
+  // 释放。释放后播放器将不可再被使用
+  destroyPlay = () => {
+    this._dispatchCommand('destroyPlay');
+  };
+
+  // 跳转到指定位置,传入单位为秒
+  seekTo = (position = 0) => {
+    if (typeof position === 'number') {
+      this._dispatchCommand('seekTo', [position]);
+    }
+  };
+
+  render() {
+    return(
+      <AliyunPlayer ref={this._assignRoot} {...this.props}/>
+    )
+  }
 }
-
-export default RNAliPlayer;

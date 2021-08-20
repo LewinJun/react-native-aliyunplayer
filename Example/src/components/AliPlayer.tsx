@@ -33,14 +33,6 @@ interface AliPlayerProps {
     onAliLoopingStart?: Function, // 循环播放开始
     onAliBitrateChange?: Function, // 切换清晰度
     onAliBitrateReady?: Function, // 获取清晰度回调
-
-    startPlay?: () => void;
-    pausePlay?: () => void;
-    stopPlay?: () => void;
-    reloadPlay?: () => void;
-    restartPlay?: () => void;
-    destroyPlay?: () => void;
-    seekTo?: (position :number) => void;
 }
 
 export default class AliPlayer extends Component <AliPlayerProps>{

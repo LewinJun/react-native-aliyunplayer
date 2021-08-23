@@ -13,7 +13,7 @@ NS_ASSUME_NONNULL_BEGIN
 
 @interface AliyunPlayer : UIView<AVPDelegate>
 
-//播放器对象
+//播放器对象~
 @property(nonatomic,strong) AliPlayer * player;
 
 //定义要暴露属性

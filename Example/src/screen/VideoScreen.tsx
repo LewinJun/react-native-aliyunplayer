@@ -50,7 +50,8 @@ export default class VideoScreen extends Component<StackScreenProps<any>, {
                             }</Text>
                         </TouchableOpacity>
                         <TouchableOpacity onPress={() => {
-                            this.player?.seekTo(0.9)
+                            // 30秒位置
+                            this.player?.seekTo(30)
                         }}>
                             <Text style={{ color: 'white' }}>跳转到</Text>
                         </TouchableOpacity>

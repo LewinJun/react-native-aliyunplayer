@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import React, { Component, useRef } from "react";
 import { Text, TouchableOpacity, View, StyleSheet, SafeAreaView } from "react-native";
-import AliPlayer from "../components/AliPlayer";
+import AliPlayer from "react-native-aliyunplayer";
 
 export default class VideoScreen extends Component<StackScreenProps<any>, {
     play: boolean
@@ -45,7 +45,7 @@ export default class VideoScreen extends Component<StackScreenProps<any>, {
 
                             })
                         }}>
-                            <Text style={{ color: 'white' }}>{
+                            <Text style={{ color: 'white', marginRight: 15, padding: 10 }}>{
                                 play ? '暂停' : '播放'
                             }</Text>
                         </TouchableOpacity>

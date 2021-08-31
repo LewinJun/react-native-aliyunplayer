@@ -45,6 +45,15 @@
       "eslint-plugin-typescript": "^0.14.0",
       "typescript": "^4.2.3"
     },
+    "files": [
+      "index.tsx",
+      "main.js",
+      "ios/",
+      "README.md",
+      "android/src",
+      "android/build.gradle",
+      "react-native-aliyunplayer.podspec"
+    ],
     "bugs": {
       "url": "https://github.com/LewinJun/react-native-aliyunplayer/issues"
     },

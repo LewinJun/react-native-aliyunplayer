@@ -57,5 +57,8 @@
     "bugs": {
       "url": "https://github.com/LewinJun/react-native-aliyunplayer/issues"
     },
+    "publishConfig": {
+      "registry": "https://registry.npmjs.org/"
+    },
     "homepage": "https://github.com/LewinJun/react-native-aliyunplayer#readme"
   }

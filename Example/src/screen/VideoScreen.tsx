@@ -2,7 +2,7 @@ import { useNavigation } from "@react-navigation/native";
 import { StackScreenProps } from "@react-navigation/stack";
 import React, { Component, useRef } from "react";
 import { Text, TouchableOpacity, View, StyleSheet, SafeAreaView } from "react-native";
-import AliPlayer from "react-native-aliyunplayer";
+import AliPlayer from "react-native-lewin-aliyunplayer";
 
 export default class VideoScreen extends Component<StackScreenProps<any>, {
     play: boolean

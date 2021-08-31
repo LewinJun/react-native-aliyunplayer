@@ -5589,9 +5589,6 @@ react-is@^16.13.0, react-is@^16.7.0, react-is@^16.8.1:
   resolved "http://verdaccio.doctopia.com.cn/react-is/-/react-is-16.13.1.tgz#789729a4dc36de2999dc156dd6c1d9c18cea56a4"
   integrity sha1-eJcppNw23imZ3BVt1sHZwYzqVqQ=
 
-react-native-aliyunplayer@../:
-  version "1.0.0"
-
 react-native-codegen@^0.0.6:
   version "0.0.6"
   resolved "http://verdaccio.doctopia.com.cn/react-native-codegen/-/react-native-codegen-0.0.6.tgz#b3173faa879cf71bfade8d030f9c4698388f6909"
@@ -5616,6 +5613,11 @@ react-native-iphone-x-helper@^1.3.0:
   version "1.3.1"
   resolved "http://verdaccio.doctopia.com.cn/react-native-iphone-x-helper/-/react-native-iphone-x-helper-1.3.1.tgz#20c603e9a0e765fd6f97396638bdeb0e5a60b010"
   integrity sha1-IMYD6aDnZf1vlzlmOL3rDlpgsBA=
+
+react-native-lewin-aliyunplayer@1.0.0:
+  version "1.0.0"
+  resolved "https://registry.npmjs.org/react-native-lewin-aliyunplayer/-/react-native-lewin-aliyunplayer-1.0.0.tgz#ed4b72cd613523e8461199efef035038cb11ebee"
+  integrity sha512-EUwivwMGt2IrhYosB19thbmmIydKVbqU+F0FodjOxKL33JMazeZVExkgtb59YoBftYiBbDqumEqiFCumj+31OQ==
 
 react-native-safe-area-context@^3.2.0:
   version "3.2.0"

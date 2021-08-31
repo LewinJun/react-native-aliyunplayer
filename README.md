@@ -1,4 +1,4 @@
-# react-native-aliyunplayer
+# react-native-lewin-aliyunplayer
 阿里云播放器 react native,播放暂停等1.0版本没有UI，需自定义
 
 

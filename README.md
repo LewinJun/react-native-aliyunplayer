@@ -9,7 +9,7 @@
 
 ## Install
 ### 1: yarn add 或者npm install
-`yarn add react-native-aliyunplayer `
+`yarn add react-native-lewin-aliyunplayer `
 
 ### 2: android需要配置build.gradle maven {url 'https://maven.aliyun.com/repository/releases'}
 ```xml

@@ -2,7 +2,7 @@ import React, { Component } from 'react'
 import { View, requireNativeComponent, findNodeHandle, StyleProp, ViewStyle, UIManager } from 'react-native'
 var AliyunPlayer = requireNativeComponent('RNAliplayer');
 
-interface AliPlayerProps {
+export interface AliPlayerProps {
     style?: StyleProp<ViewStyle>;
     source?: string; // 播放地址
     setAutoPlay?: boolean; // 是否自动播放
@@ -35,7 +35,7 @@ interface AliPlayerProps {
     onAliBitrateReady?: (e: AliPlayerFuncParams<{ index: number; width: number; height: number; bitrate: number }>) => void, // 获取清晰度回调
 }
 
-interface AliPlayerFuncParams<T> {
+export interface AliPlayerFuncParams<T> {
     nativeEvent: T
 }
 

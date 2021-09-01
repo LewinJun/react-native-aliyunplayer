@@ -50,7 +50,7 @@
 //定义要暴露属性
 - (void)setSource:(NSString *)source{
   _source = source;
-  AVPUrlSource * urlSource = [[AVPUrlSource alloc] urlWithString:source];
+  AVPUrlSource * urlSource = [[AVPUrlSource alloc] urlWithString:[source stringByAddingPercentEscapesUsingEncoding:NSUTF8StringEncoding]];
   [self.player setUrlSource:urlSource];
   [self.player prepare];
 }
@@ -182,42 +182,51 @@
  @param eventType 播放器事件类型，@see AVPEventType
  */
 -(void)onPlayerEvent:(AliPlayer*)player eventType:(AVPEventType)eventType {
+    AVPMediaInfo *mode = [player getMediaInfo];
+    int width = 0;
+    int height = 0;
+    if (mode != nil && mode.tracks != nil && mode.tracks.count > 0) {
+        width = mode.tracks[0].videoWidth;
+        height = mode.tracks[0].videoHeight;
+    }
   switch (eventType) {
     case AVPEventPrepareDone:
       // 准备完成
       if (self.onAliPrepared) {
-         self.onAliPrepared(@{@"duration":@(player.duration/1000)});
+         self.onAliPrepared(@{@"duration":@(player.duration/1000), @"width": @(width), @"height": @(height)});
       }
 //      [_player setThumbnailUrl:@"https://p.qqan.com/up/2021-8/16292685053812604.jpg"];
       break;
     case AVPEventAutoPlayStart:
       // 自动播放开始事件
       if (self.onAliAutoPlayStart) {
-         self.onAliAutoPlayStart(@{@"code":@"onAliAutoPlayStart"});
+         self.onAliAutoPlayStart(@{@"code":@"onAliAutoPlayStart", @"duration":@(mode.duration/1000), @"width": @(width), @"height": @(height)});
       }
       break;
     case AVPEventFirstRenderedStart:
+          
       // 首帧显示
       if (self.onAliRenderingStart) {
-        self.onAliRenderingStart(@{@"code":@"onRenderingStart"});
+        self.onAliRenderingStart(@{@"code":@"onRenderingStart", @"duration":@(mode.duration/1000), @"width": @(width), @"height": @(height)});
       }
       break;
     case AVPEventCompletion:
       // 播放完成
       if (self.onAliCompletion) {
-        self.onAliCompletion(@{@"code":@"onAliCompletion"});
+        self.onAliCompletion(@{@"code":@"onAliCompletion", @"duration":@(mode.duration/1000), @"width": @(width), @"height": @(height)});
       }
       break;
     case AVPEventLoadingStart:
       // 缓冲开始
       if (self.onAliLoadingBegin) {
-        self.onAliLoadingBegin(@{@"code":@"onAliLoadingBegin"});
+          
+          self.onAliLoadingBegin(@{@"code":@"onAliLoadingBegin", @"duration":@(mode.duration/1000), @"width": @(width), @"height": @(height)});
       }
       break;
     case AVPEventLoadingEnd:
       // 缓冲完成
       if (self.onAliLoadingEnd) {
-        self.onAliLoadingEnd(@{@"code":@"onAliLoadingEnd"});
+        self.onAliLoadingEnd(@{@"code":@"onAliLoadingEnd", @"duration":@(mode.duration/1000), @"width": @(width), @"height": @(height)});
       }
       break;
     case AVPEventSeekEnd:

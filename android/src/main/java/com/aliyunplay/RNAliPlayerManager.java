@@ -27,10 +27,12 @@ import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.facebook.react.uimanager.ViewGroupManager;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 public class RNAliPlayerManager extends ViewGroupManager<AliSurfaceView> {
+    public static List<AliSurfaceView> videoViews;
     private static final String REACT_CLASS = "RNAliplayer";
     private static final String TAG = REACT_CLASS;
     private RCTEventEmitter mEventEmitter;
@@ -84,6 +86,10 @@ public class RNAliPlayerManager extends ViewGroupManager<AliSurfaceView> {
         AliSurfaceView view = new AliSurfaceView(context);
         this.initConfig(view);
         this.initListener(view);
+        if (videoViews == null) {
+            videoViews = new ArrayList<>();
+        }
+        videoViews.add(view);
         return view;
     }
 
@@ -420,5 +426,20 @@ public class RNAliPlayerManager extends ViewGroupManager<AliSurfaceView> {
                 Log.i(TAG, "onChangedFail: " + errorInfo.getMsg());
             }
         });
+    }
+    
+    public void stopAllVideo() {
+        if (RNAliPlayerManager.videoViews != null && RNAliPlayerManager.videoViews.size() > 0) {
+            for (int i = 0; i < RNAliPlayerManager.videoViews.size(); i++) {
+                AliSurfaceView vieww = RNAliPlayerManager.videoViews.get(i);
+                vieww.aliyunVodPlayer.stop();
+            }
+        }
+    }
+
+    @Override
+    public void onCatalystInstanceDestroy() {
+        super.onCatalystInstanceDestroy();
+        stopAllVideo();
     }
 }

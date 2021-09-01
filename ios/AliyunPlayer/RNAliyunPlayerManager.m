@@ -7,6 +7,14 @@
 
 #import "RNAliyunPlayerManager.h"
 
+static NSMutableArray *videos;
+
+@interface RNAliyunPlayerManager ()
+
+@property(strong, nonatomic)  AliyunPlayer *aliyunPlayer;
+
+@end
+
 @implementation RNAliyunPlayerManager
 
 RCT_EXPORT_MODULE(RNAliplayer)
@@ -86,12 +94,47 @@ RCT_EXPORT_METHOD(seekTo:(nonnull NSNumber *) reactTag andPosition:(nonnull NSNu
      }];
 }
 
+
 //重写这个方法，返回将要提供给RN使用的视图
 - (UIView *)view {
     AliyunPlayer * aliPlayer = [[AliyunPlayer alloc] init];
+    if (videos == nil) {
+        videos = [NSMutableArray new];
+    }
+    self.aliyunPlayer = aliPlayer;
+    [[NSNotificationCenter defaultCenter] addObserver:self
+                                                         selector:@selector(handleViewStateNotification:)
+                                                             name:@"stopAllVideo"
+                                                           object:nil];
+    [videos addObject:aliPlayer];
     return aliPlayer;
 }
 
+
+- (void)handleViewStateNotification:(NSNotification *)notification
+{
+    [self stopAllVideo];
+}
+
+- (void)stopAllVideo {
+    for(int i=0;i<videos.count;i++) {
+        AliyunPlayer *v = videos[i];
+        [v stopPlay];
+        [v destroyPlay];
+        v = nil;
+    }
+    [videos removeAllObjects];
+}
+
++ (BOOL)requiresMainQueueSetup
+{
+    return YES;
+}
+
+- (void)dealloc
+{
+    [self stopAllVideo];
+}
 
 @end
 

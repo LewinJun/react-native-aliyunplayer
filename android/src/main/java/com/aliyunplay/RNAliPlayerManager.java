@@ -1,6 +1,7 @@
 package com.aliyunplay;
 
 import android.graphics.Color;
+import android.net.Uri;
 import android.util.Log;
 import android.view.View;
 
@@ -27,6 +28,7 @@ import com.facebook.react.uimanager.annotations.ReactProp;
 import com.facebook.react.uimanager.events.RCTEventEmitter;
 import com.facebook.react.uimanager.ViewGroupManager;
 
+import java.net.URLEncoder;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -151,10 +153,17 @@ public class RNAliPlayerManager extends ViewGroupManager<AliSurfaceView> {
     @ReactProp(name = "source")
     public void setSrc(AliSurfaceView view, String src) {
         Log.i(TAG, "setSrc: " + src);
-        UrlSource source = new UrlSource();
-        source.setUri(src);
-        view.aliyunVodPlayer.setDataSource(source);
-        view.aliyunVodPlayer.prepare();
+        try {
+            UrlSource source = new UrlSource();
+            String sourceStr = src.replaceAll(" ", "%20");
+
+            source.setUri(sourceStr);
+            view.aliyunVodPlayer.setDataSource(source);
+            view.aliyunVodPlayer.prepare();
+        }catch (Exception e) {
+            e.printStackTrace();
+        }
+
     }
 
     //设置自动播放
@@ -300,20 +309,23 @@ public class RNAliPlayerManager extends ViewGroupManager<AliSurfaceView> {
             public void onInfo(InfoBean infoBean) {
                 WritableMap event = Arguments.createMap();
 
-                List<TrackInfo> trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
                 int width = 0;
                 int height = 0;
-                if (trackInfos.size() > 0) {
+                int du =0;
+                List<TrackInfo> trackInfos = null;
+                if (view.aliyunVodPlayer.getMediaInfo() != null ) {
+                    trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
+                    du = view.aliyunVodPlayer.getMediaInfo().getDuration()/1000;
+                }
+                if (trackInfos != null && trackInfos.size() > 0) {
                     width = trackInfos.get(0).videoWidth;
                     height = trackInfos.get(0).videoHeight;
                 }
-                int du = view.aliyunVodPlayer.getMediaInfo().getDuration()/1000;
-                event.putInt("position", du);//转换成秒
                 event.putInt("duration", du);
                 event.putInt("width", width);
                 event.putInt("height", height);
                 if (infoBean.getCode() == InfoCode.CurrentPosition) {
-
+                    event.putInt("position", (int) (infoBean.getExtraValue() / 1000));//转换成秒
                     mEventEmitter.receiveEvent(view.getId(), Events.onCurrentPositionUpdate.toString(), event);
                 } else if (infoBean.getCode() == InfoCode.BufferedPosition) {
                     event.putInt("position", (int) (infoBean.getExtraValue() / 1000));//转换成秒
@@ -333,14 +345,18 @@ public class RNAliPlayerManager extends ViewGroupManager<AliSurfaceView> {
                 WritableArray bitratesArray = new WritableNativeArray();
                 WritableMap prepareEvent = Arguments.createMap();
 
-                List<TrackInfo> trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
                 int width = 0;
                 int height = 0;
-                if (trackInfos!=null && trackInfos.size() > 0) {
+                int du =0;
+                List<TrackInfo> trackInfos = null;
+                if (view.aliyunVodPlayer.getMediaInfo() != null ) {
+                    trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
+                    du = view.aliyunVodPlayer.getMediaInfo().getDuration()/1000;
+                }
+                if (trackInfos != null && trackInfos.size() > 0) {
                     width = trackInfos.get(0).videoWidth;
                     height = trackInfos.get(0).videoHeight;
                 }
-                int du = view.aliyunVodPlayer.getMediaInfo().getDuration()/1000;
                 prepareEvent.putInt("position", du);//转换成秒
                 prepareEvent.putInt("duration", du);
                 prepareEvent.putInt("width", width);
@@ -390,14 +406,18 @@ public class RNAliPlayerManager extends ViewGroupManager<AliSurfaceView> {
                 Log.i(TAG, "onRenderingStart: ");
 
                 WritableMap event = Arguments.createMap();
-                List<TrackInfo> trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
                 int width = 0;
                 int height = 0;
-                if (trackInfos!=null && trackInfos.size() > 0) {
+                int du =0;
+                List<TrackInfo> trackInfos = null;
+                if (view.aliyunVodPlayer.getMediaInfo() != null ) {
+                    trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
+                    du = view.aliyunVodPlayer.getMediaInfo().getDuration()/1000;
+                }
+                if (trackInfos != null && trackInfos.size() > 0) {
                     width = trackInfos.get(0).videoWidth;
                     height = trackInfos.get(0).videoHeight;
                 }
-                int du = view.aliyunVodPlayer.getMediaInfo().getDuration()/1000;
                 event.putInt("position", du);//转换成秒
                 event.putInt("duration", du);
                 event.putInt("width", width);
@@ -421,14 +441,18 @@ public class RNAliPlayerManager extends ViewGroupManager<AliSurfaceView> {
                 Log.i(TAG, "onLoadingBegin: ");
 
                 WritableMap event = Arguments.createMap();
-                List<TrackInfo> trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
                 int width = 0;
                 int height = 0;
-                if (trackInfos!=null && trackInfos.size() > 0) {
+                int du =0;
+                List<TrackInfo> trackInfos = null;
+                if (view.aliyunVodPlayer.getMediaInfo() != null ) {
+                    trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
+                    du = view.aliyunVodPlayer.getMediaInfo().getDuration()/1000;
+                }
+                if (trackInfos != null && trackInfos.size() > 0) {
                     width = trackInfos.get(0).videoWidth;
                     height = trackInfos.get(0).videoHeight;
                 }
-                int du = view.aliyunVodPlayer.getMediaInfo().getDuration()/1000;
                 event.putInt("position", du);//转换成秒
                 event.putInt("duration", du);
                 event.putInt("width", width);
@@ -450,14 +474,18 @@ public class RNAliPlayerManager extends ViewGroupManager<AliSurfaceView> {
                 Log.i(TAG, "onLoadingEnd: ");
 
                 WritableMap event = Arguments.createMap();
-                List<TrackInfo> trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
                 int width = 0;
                 int height = 0;
-                if (trackInfos!=null && trackInfos.size() > 0) {
+                int du =0;
+                List<TrackInfo> trackInfos = null;
+                if (view.aliyunVodPlayer.getMediaInfo() != null ) {
+                    trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
+                    du = view.aliyunVodPlayer.getMediaInfo().getDuration()/1000;
+                }
+                if (trackInfos != null && trackInfos.size() > 0) {
                     width = trackInfos.get(0).videoWidth;
                     height = trackInfos.get(0).videoHeight;
                 }
-                int du = view.aliyunVodPlayer.getMediaInfo().getDuration()/1000;
                 event.putInt("position", du);//转换成秒
                 event.putInt("duration", du);
                 event.putInt("width", width);

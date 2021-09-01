@@ -336,7 +336,7 @@ public class RNAliPlayerManager extends ViewGroupManager<AliSurfaceView> {
                 List<TrackInfo> trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
                 int width = 0;
                 int height = 0;
-                if (trackInfos.size() > 0) {
+                if (trackInfos!=null && trackInfos.size() > 0) {
                     width = trackInfos.get(0).videoWidth;
                     height = trackInfos.get(0).videoHeight;
                 }
@@ -393,7 +393,7 @@ public class RNAliPlayerManager extends ViewGroupManager<AliSurfaceView> {
                 List<TrackInfo> trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
                 int width = 0;
                 int height = 0;
-                if (trackInfos.size() > 0) {
+                if (trackInfos!=null && trackInfos.size() > 0) {
                     width = trackInfos.get(0).videoWidth;
                     height = trackInfos.get(0).videoHeight;
                 }
@@ -424,7 +424,7 @@ public class RNAliPlayerManager extends ViewGroupManager<AliSurfaceView> {
                 List<TrackInfo> trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
                 int width = 0;
                 int height = 0;
-                if (trackInfos.size() > 0) {
+                if (trackInfos!=null && trackInfos.size() > 0) {
                     width = trackInfos.get(0).videoWidth;
                     height = trackInfos.get(0).videoHeight;
                 }
@@ -453,7 +453,7 @@ public class RNAliPlayerManager extends ViewGroupManager<AliSurfaceView> {
                 List<TrackInfo> trackInfos = view.aliyunVodPlayer.getMediaInfo().getTrackInfos();
                 int width = 0;
                 int height = 0;
-                if (trackInfos.size() > 0) {
+                if (trackInfos!=null && trackInfos.size() > 0) {
                     width = trackInfos.get(0).videoWidth;
                     height = trackInfos.get(0).videoHeight;
                 }

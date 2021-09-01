@@ -19,20 +19,24 @@ interface AliPlayerProps {
     configHeader?: Array<any>; // 配置自定义header
     selectBitrateIndex?: number; // 切换清晰度  选择清晰度的index，-1代表自适应码率
 
-    onAliCompletion?: Function, // 播放完成事件
-    onAliError?: Function, // 出错事件
-    onAliLoadingBegin?: Function, // 缓冲开始。
-    onAliLoadingProgress?: Function, // 缓冲进度
-    onAliLoadingEnd?: Function, // 缓冲结束
-    onAliPrepared?: Function, // 准备成功事件
-    onAliRenderingStart?: Function, // 首帧渲染显示事件
-    onAliSeekComplete?: Function, // 拖动结束
-    onAliCurrentPositionUpdate?: Function, // 播放进度
-    onAliBufferedPositionUpdate?: Function, // 缓冲进度
-    onAliAutoPlayStart?: Function, // 自动播放开始
-    onAliLoopingStart?: Function, // 循环播放开始
-    onAliBitrateChange?: Function, // 切换清晰度
-    onAliBitrateReady?: Function, // 获取清晰度回调
+    onAliCompletion?: (e: AliPlayerFuncParams<{ code: "onAliCompletion" }>) => void, // 播放完成事件
+    onAliError?: (e: AliPlayerFuncParams<{ code: string; message: string }>) => void, // 出错事件
+    onAliLoadingBegin?: (e: AliPlayerFuncParams<{ code: "onAliLoadingBegin" }>) => void, // 缓冲开始。
+    onAliLoadingProgress?: (e: AliPlayerFuncParams<{ percent: number }>) => void, // 缓冲进度
+    onAliLoadingEnd?: (e: AliPlayerFuncParams<{ code: "onAliLoadingEnd" }>) => void, // 缓冲结束
+    onAliPrepared?: (e: AliPlayerFuncParams<{ duration: number }>) => void, // 准备成功事件
+    onAliRenderingStart?: (e: AliPlayerFuncParams<{ code: "onRenderingStart" }>) => void, // 首帧渲染显示事件
+    onAliSeekComplete?: (e: AliPlayerFuncParams<{ code: "onAliSeekComplete" }>) => void, // 拖动结束
+    onAliCurrentPositionUpdate?: (e: AliPlayerFuncParams<{ position: number }>) => void, // 播放进度
+    onAliBufferedPositionUpdate?: (e: AliPlayerFuncParams<{ position: number }>) => void, // 缓冲进度
+    onAliAutoPlayStart?: (e: AliPlayerFuncParams<{ code: "onAliAutoPlayStart" }>) => void, // 自动播放开始
+    onAliLoopingStart?: (e: AliPlayerFuncParams<{ code: "onAliLoopingStart" }>) => void, // 循环播放开始
+    onAliBitrateChange?: (e: AliPlayerFuncParams<{ index: number; width: number; height: number }>) => void, // 切换清晰度
+    onAliBitrateReady?: (e: AliPlayerFuncParams<{ index: number; width: number; height: number; bitrate: number }>) => void, // 获取清晰度回调
+}
+
+interface AliPlayerFuncParams<T> {
+    nativeEvent: T
 }
 
 export default class AliPlayer extends Component<AliPlayerProps>{
